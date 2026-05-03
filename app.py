@@ -1,5 +1,10 @@
+from flask import Flask, render_template, request
 import pyodbc
 
+# CREATE FLASK APP (VERY IMPORTANT)
+app = Flask(__name__)
+
+# DATABASE CONNECTION STRING
 conn_str = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
     "SERVER=cms-server-12345.database.windows.net;"
@@ -10,6 +15,12 @@ conn_str = (
     "TrustServerCertificate=yes;"
 )
 
+# HOME ROUTE (REQUIRED)
+@app.route('/')
+def home():
+    return "CMS is running on Azure!"
+
+# CREATE ROUTE
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
