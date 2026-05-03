@@ -5,7 +5,7 @@ conn_str = (
     "SERVER=cms-server-12345.database.windows.net;"
     "DATABASE=cms;"
     "UID=cmsadmin;"
-    "PWD=your_password_here;"
+    "PWD=CMS4dmin;"
     "Encrypt=yes;"
     "TrustServerCertificate=yes;"
 )
