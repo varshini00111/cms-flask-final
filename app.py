@@ -1,23 +1,25 @@
-from flask import Flask, render_template, request, redirect
+import pyodbc
 
-app = Flask(__name__)
+conn_str = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=your_server.database.windows.net;DATABASE=your_db;UID=your_user;PWD=your_password"
 
-# Home route
-@app.route('/')
-def home():
-    return "CMS is running on Azure!"
-
-# Create article page
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
-        title = request.form.get('title')
-        author = request.form.get('author')
-        body = request.form.get('body')
+        title = request.form['title']
+        author = request.form['author']
+        body = request.form['body']
 
-        return f"Article Created: {title} by {author}"
+        conn = pyodbc.connect(conn_str)
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "INSERT INTO articles (title, author, body) VALUES (?, ?, ?)",
+            (title, author, body)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return "✅ Article Saved!"
 
     return render_template("create.html")
-
-if __name__ == '__main__':
-    app.run()
