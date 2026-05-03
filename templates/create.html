@@ -6,11 +6,19 @@
 <body>
     <h1>Create Article</h1>
 
-    <form method="POST">
-        <input type="text" name="title" placeholder="Title"><br><br>
-        <input type="text" name="author" placeholder="Author"><br><br>
-        <textarea name="body" placeholder="Content"></textarea><br><br>
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="title" placeholder="Title" required><br><br>
+
+        <input type="text" name="author" placeholder="Author" required><br><br>
+
+        <textarea name="body" placeholder="Content" required></textarea><br><br>
+
+        <!-- ✅ IMAGE UPLOAD FIELD -->
+        <input type="file" name="image" accept="image/*"><br><br>
+
         <button type="submit">Submit</button>
+
     </form>
 
 </body>
