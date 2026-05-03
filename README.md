@@ -91,7 +91,7 @@ Table: 'articles'
 
 ## Screenshots (Submission Proof)
 
-Add the following screenshots in your repository (recommended folder: `screenshots/`):
+Added the following screenshots in  repository (cms-flask-final):
 
 1. Resource Group (all resources visible)
 2. SQL Database (articles table with data)
@@ -111,5 +111,4 @@ Overall, the application logic and integration are functioning properly.
 
 This project demonstrates how to build and deploy a full-stack web application using Flask and Azure services, including database integration, cloud storage, and web hosting.
 
-Varshini
-B.Tech AIML Student
+
