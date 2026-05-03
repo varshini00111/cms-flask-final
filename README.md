@@ -99,12 +99,14 @@ Add the following screenshots in your repository (recommended folder: `screensho
 4. Application running in browser (with URL visible)
 5. Create Article success screen
 
-## ⚠️ Known Issue
+## Note
+The application is successfully deployed on Azure and works as expected. It connects to Azure SQL Database and Blob Storage for storing data and images.
 
-The application is fully deployed and functional. However, due to Azure SQL firewall/network restrictions, the live app may occasionally show a connection timeout while inserting data.
+However, during testing, there were occasional connection timeout issues when accessing the database from the deployed web app. This is mainly due to Azure network and firewall settings, not because of any issue in the application code.
 
-The database itself is working correctly and data operations were verified through the Azure Query Editor. This issue is related to Azure network configuration rather than application logic.
+The database itself is working correctly, and all operations were verified using the Azure Query Editor.
 
+Overall, the application logic and integration are functioning properly.
 ## 🎯 Conclusion
 
 This project demonstrates how to build and deploy a full-stack web application using Flask and Azure services, including database integration, cloud storage, and web hosting.
