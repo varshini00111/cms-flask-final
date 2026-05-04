@@ -10,7 +10,7 @@ This project is a simple Content Management System (CMS) built using Flask and d
 * Azure Blob Storage (stores images)
 * Azure App Service (hosts the web application)
 
-----
+---
 
 ## Live Application
 
@@ -23,6 +23,8 @@ https://cmsproject123-cjahawhmg6erbzcc.australiaeast-01.azurewebsites.net/login
 **Create Article Page:**
 https://cmsproject123-cjahawhmg6erbzcc.australiaeast-01.azurewebsites.net/create
 
+---
+
 ## Features
 
 * Create articles (Title, Author, Content)
@@ -32,6 +34,8 @@ https://cmsproject123-cjahawhmg6erbzcc.australiaeast-01.azurewebsites.net/create
 * Deployed using Azure App Service
 * Secure configuration using environment variables
 * Login system with logging
+
+---
 
 ## Authentication & Logging
 
@@ -60,6 +64,7 @@ admin logged in successfully
 
 Screenshots showing both successful and failed login attempts are included in this repository.
 
+---
 
 ## Architecture
 
@@ -69,6 +74,7 @@ Screenshots showing both successful and failed login attempts are included in th
 * Storage: Azure Blob Storage
 * Hosting: Azure App Service
 
+---
 
 ## Technologies Used
 
@@ -78,6 +84,7 @@ Screenshots showing both successful and failed login attempts are included in th
 * Azure Blob Storage SDK
 * Gunicorn
 
+---
 
 ## Project Structure
 
@@ -92,6 +99,8 @@ project/
 └── templates/
     └── create.html
 ```
+
+---
 
 ## Environment Variables
 
@@ -109,6 +118,7 @@ Configured in Azure App Service:
 * CLIENT_ID
 * CLIENT_SECRET
 
+---
 
 ## Database Structure
 
@@ -122,6 +132,7 @@ Table: `articles`
 | body      | NVARCHAR(MAX)     |
 | image_url | NVARCHAR(MAX)     |
 
+---
 
 ## Screenshots (Submission Proof)
 
@@ -134,6 +145,7 @@ Screenshots are available in the `screenshots/` folder:
 5. Create Article – Successful article creation
 6. Login Logs – Successful and failed login attempts
 
+---
 
 ## Note
 
@@ -143,6 +155,7 @@ During testing, occasional database connection timeouts were observed due to Azu
 
 All database operations were verified using Azure Query Editor.
 
+---
 
 ## Conclusion
 
