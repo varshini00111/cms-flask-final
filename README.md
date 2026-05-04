@@ -2,6 +2,7 @@
 
 This project is a simple Content Management System (CMS) built using Flask and deployed on Microsoft Azure. It allows users to create articles with a title, author, body, and an optional image.
 
+---
 
 ## Azure Services Used
 
@@ -9,6 +10,7 @@ This project is a simple Content Management System (CMS) built using Flask and d
 * Azure Blob Storage (stores images)
 * Azure App Service (hosts the web application)
 
+----
 
 ## Live Application
 
