@@ -91,8 +91,6 @@ project/
     └── create.html
 ```
 
----
-
 ## Environment Variables
 
 Configured in Azure App Service:
