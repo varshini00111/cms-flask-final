@@ -3,8 +3,15 @@ import pyodbc
 from azure.storage.blob import BlobServiceClient
 import os
 import uuid
+import logging
 
 app = Flask(__name__)
+
+# =========================
+# LOGGING (IMPORTANT)
+# =========================
+logging.basicConfig(level=logging.INFO)
+app.logger.setLevel(logging.INFO)
 
 # =========================
 # DATABASE CONNECTION
@@ -27,7 +34,7 @@ container_name = os.environ.get("BLOB_CONTAINER")
 storage_account_name = os.environ.get("BLOB_ACCOUNT")
 
 # =========================
-# DEBUG CHECK (VERY IMPORTANT)
+# DEBUG CHECK
 # =========================
 if not blob_connection_string:
     print("❌ ERROR: Missing BLOB_CONNECTION_STRING")
@@ -43,6 +50,33 @@ def home():
     return "CMS is running on Azure!"
 
 # =========================
+# LOGIN ROUTE (IMPORTANT)
+# =========================
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Hardcoded credentials (as required)
+        if username == "admin" and password == "pass":
+            app.logger.info(f"User logged in successfully: {username}")
+            return " Login Successful"
+
+        else:
+            app.logger.warning(f"Invalid login attempt for user: {username}")
+            return " Invalid Login"
+
+    return '''
+        <h2>Login</h2>
+        <form method="post">
+            Username: <input name="username"><br>
+            Password: <input name="password" type="password"><br>
+            <input type="submit">
+        </form>
+    '''
+
+# =========================
 # CREATE ARTICLE
 # =========================
 @app.route('/create', methods=['GET', 'POST'])
@@ -53,7 +87,6 @@ def create():
             author = request.form['author']
             body = request.form['body']
 
-            # SAFE IMAGE FETCH
             image = request.files.get('image')
             image_url = None
 
