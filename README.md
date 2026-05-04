@@ -24,6 +24,29 @@ https://cmsproject123-cjahawhmg6erbzcc.australiaeast-01.azurewebsites.net/create
 * Deployed using Azure App Service
 * Secure configuration using environment variables
 
+## Authentication & Logging
+
+This application includes a simple login system for demonstration and logging purposes.
+
+Login Credentials:
+
+Username: admin
+Password: pass
+
+The application logs:
+
+Successful login attempts
+Failed login attempts
+
+These logs are available in Azure App Service → Log Stream.
+
+Example log output:
+
+Invalid login attempt
+admin logged in successfully
+
+Screenshots of both successful and failed login attempts are included in this repository.
+
 ## Architecture
 
 * Frontend: HTML (Flask templates)
