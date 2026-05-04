@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import pyodbc
 from azure.storage.blob import BlobServiceClient
 import os
@@ -8,7 +8,7 @@ import logging
 app = Flask(__name__)
 
 # =========================
-# LOGGING (IMPORTANT)
+# LOGGING (VERY IMPORTANT)
 # =========================
 logging.basicConfig(level=logging.INFO)
 app.logger.setLevel(logging.INFO)
@@ -34,23 +34,18 @@ container_name = os.environ.get("BLOB_CONTAINER")
 storage_account_name = os.environ.get("BLOB_ACCOUNT")
 
 # =========================
-# DEBUG CHECK
-# =========================
-if not blob_connection_string:
-    print("❌ ERROR: Missing BLOB_CONNECTION_STRING")
-
-if not os.environ.get("SQL_SERVER"):
-    print("❌ ERROR: Missing SQL ENV VARIABLES")
-
-# =========================
 # HOME ROUTE
 # =========================
 @app.route('/')
 def home():
-    return "CMS is running on Azure!"
+    return '''
+    <h1>CMS Running on Azure 🚀</h1>
+    <a href="/login">Login</a><br>
+    <a href="/create">Create Article</a>
+    '''
 
 # =========================
-# LOGIN ROUTE (IMPORTANT)
+# LOGIN ROUTE
 # =========================
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -58,14 +53,13 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
 
-        # Hardcoded credentials (as required)
+        # HARD-CODED USER
         if username == "admin" and password == "pass":
-            app.logger.info(f"User logged in successfully: {username}")
-            return " Login Successful"
-
+            app.logger.info("admin logged in successfully")
+            return redirect(url_for('home'))
         else:
-            app.logger.warning(f"Invalid login attempt for user: {username}")
-            return " Invalid Login"
+            app.logger.error("Invalid login attempt")
+            return "❌ Invalid username or password"
 
     return '''
         <h2>Login</h2>
@@ -90,9 +84,7 @@ def create():
             image = request.files.get('image')
             image_url = None
 
-            # =========================
-            # IMAGE UPLOAD TO BLOB
-            # =========================
+            # IMAGE UPLOAD
             if image and image.filename:
                 filename = str(uuid.uuid4()) + "_" + image.filename
 
@@ -106,9 +98,7 @@ def create():
 
                 image_url = f"https://{storage_account_name}.blob.core.windows.net/{container_name}/{filename}"
 
-            # =========================
-            # SAVE TO DATABASE
-            # =========================
+            # DATABASE SAVE
             conn = pyodbc.connect(conn_str)
             cursor = conn.cursor()
 
@@ -120,9 +110,15 @@ def create():
             conn.commit()
             conn.close()
 
-            return " Article Saved!"
+            return "✅ Article Saved Successfully!"
 
         except Exception as e:
             return f"❌ ERROR: {str(e)}"
 
     return render_template("create.html")
+
+# =========================
+# RUN APP
+# =========================
+if __name__ == '__main__':
+    app.run()
