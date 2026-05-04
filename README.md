@@ -28,19 +28,18 @@ https://cmsproject123-cjahawhmg6erbzcc.australiaeast-01.azurewebsites.net/create
 
 This application includes a simple login system for demonstration and logging purposes.
 
-Login Credentials:
+### Login Credentials:
+- Username: 'admin'
+- Password: 'pass'
 
-Username: admin
-Password: pass
-
+### Logging:
 The application logs:
+- Successful login attempts  
+- Failed login attempts  
 
-Successful login attempts
-Failed login attempts
+These logs are available in **Azure App Service → Log Stream**.
 
-These logs are available in Azure App Service → Log Stream.
-
-Example log output:
+### Example Log Output:
 
 Invalid login attempt
 admin logged in successfully
