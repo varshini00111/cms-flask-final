@@ -44,6 +44,7 @@ These logs are available in **Azure App Service → Log Stream**.
 Invalid login attempt
 admin logged in successfully
 
+
 Screenshots of both successful and failed login attempts are included in this repository.
 
 ## Architecture
